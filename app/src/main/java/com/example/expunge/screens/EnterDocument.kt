@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DocumentRedactionScreen(
-//    nextOnClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier
