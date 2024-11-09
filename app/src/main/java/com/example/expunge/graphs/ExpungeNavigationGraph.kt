@@ -4,27 +4,28 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.expunge.screens.DocumentRedactionScreen
+import com.example.expunge.screens.DocumentExpungeScreen
+import com.example.expunge.screens.FinalRedact
 
 @Composable
 fun ExpungeNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = RedactScreens.EnterDocument.route
-    ){
-        composable(route = RedactScreens.EnterDocument.route){
-            DocumentRedactionScreen()
+    ) {
+        composable(route = RedactScreens.EnterDocument.route) {
+            DocumentExpungeScreen()
         }
 
-//        composable(route = RedactScreens.FinalRedact.route){
-//            FinalRedact()
-//        }
-//
+        composable(route = RedactScreens.FinalRedact.route) {
+            FinalRedact()
+        }
+
 //        composable(route = RedactScreens.RedactSetting.route){
 //            RedactionSettingScreen(){
 //                navController.navigate(RedactScreens.FinalRedact.route)
 //            }
-//        }
+        //  }
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.expunge.screens
+    package com.example.expunge.screens
 
 import android.graphics.Bitmap
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -59,7 +59,7 @@ import com.example.expunge.R
 
 @Composable
 @Preview
-fun DocumentRedactionScreen(
+fun DocumentExpungeScreen(
 
 ) {
     var imageBitmap by remember { mutableStateOf<Bitmap?>(null) }
