@@ -59,7 +59,7 @@ import com.example.expunge.R
 
 @Composable
 @Preview
-fun DocumentRedactionScreen(
+fun DocumentExpungeScreen(
 
 ) {
     var imageBitmap by remember { mutableStateOf<Bitmap?>(null) }
