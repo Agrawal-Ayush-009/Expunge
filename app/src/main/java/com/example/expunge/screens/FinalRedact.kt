@@ -246,38 +246,3 @@ fun DocumentPreviewPreview() {
 fun FinalRedactionPreview() {
     FinalRedact()
 }
-
-@Composable
-fun NextButton(text: String, nextOnClick: () -> Unit) {
-    Button(
-        onClick = {
-            nextOnClick()
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(49.dp)
-            .padding(start = 8.dp, end = 8.dp)
-            .shadow(8.dp, shape = RoundedCornerShape(8.dp))
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(colorResource(id = R.color.button_colour_1).toArgb()),
-                        Color(colorResource(id = R.color.button_colour_2).toArgb())
-                    )
-                ),
-                shape = RoundedCornerShape(8.dp)
-            ),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(8.dp)
-    ) {
-
-        Text(
-            text = text,
-            color = Color.White,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
