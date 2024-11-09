@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.expunge"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.expunge"
@@ -72,9 +72,6 @@ dependencies {
 
     // Material3 dependency
     implementation("androidx.compose.material3:material3:1.0.0-alpha02") // Replace with your version
-
-    // Additional Compose UI dependency (version 1.4.0)
-    implementation("androidx.ui:ui-1.4.0") // Replace with your version if needed
 
 
     implementation("androidx.navigation:navigation-compose:2.8.0")
