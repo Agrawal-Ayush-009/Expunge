@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.PaintingStyle
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -55,12 +56,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.Uri
 import com.example.expunge.R
+import com.example.expunge.SharedViewmodel
 
 @Composable
 @Preview
 fun DocumentExpungeScreen(
-
+    sharedViewmodel: SharedViewmodel,
+    onPreviewClick: () -> Unit
 ) {
     var imageBitmap by remember { mutableStateOf<Bitmap?>(null) }
     val context = LocalContext.current
@@ -70,6 +74,8 @@ fun DocumentExpungeScreen(
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
             bitmap?.let {
                 imageBitmap = it
+                sharedViewmodel.updateImageBitmap(imageBitmap)
+                onPreviewClick()
             }
         }
     Column(
@@ -88,47 +94,29 @@ fun DocumentExpungeScreen(
                 .padding(vertical = 16.dp),
             shape = RoundedCornerShape(8.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+            colors = CardDefaults.cardColors(containerColor = Color.White),
         ) {
-            RedactionText()
-            DocumentOptions()
-            OrText()
-            PhotoOptions{
-                launcher.launch()
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-            Button(
-                onClick = {},
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-//                        viewModel.refreshRedaction()
-                        imageBitmap = null
-                    }
-                    .height(49.dp)
-                    .padding(start = 8.dp, end = 8.dp)
-                    .shadow(2.dp, shape = RoundedCornerShape(8.dp))
-                    .background(colorResource(id = R.color.background_gray)),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(8.dp)
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-
-                Text(
-                    text = "Refresh",
-                    color = colorResource(id = R.color.go_back_button_text),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            NextButton(text = "REDACT"){
-                imageBitmap?.let {
-//                    viewModel.uploadImage(imageBitmap!!, context)
+                Column {
+                    RedactionText()
+                    DocumentOptions()
+                    OrText()
+                    PhotoOptions{
+                        launcher.launch()
+                    }
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
+//                NextButton(text = "Preview"){
+//                    onPreviewClick()
+//                    sharedViewmodel.imageBitmap.value = imageBitmap
+////                    imageBitmap?.let {
+//////                    viewModel.uploadImage(imageBitmap!!, context)
+////                    }
+//                }
             }
-            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

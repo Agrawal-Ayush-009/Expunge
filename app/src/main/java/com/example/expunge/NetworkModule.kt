@@ -17,7 +17,7 @@ class NetworkModule {
     fun provideRetrofit(): Retrofit.Builder {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://rnxjp-110-225-71-201.a.free.pinggy.link/")
+            .baseUrl("https://sydfqrxk5l.ap.loclx.io")
     }
 
     @Provides
